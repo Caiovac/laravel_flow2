@@ -10,3 +10,4 @@ Route::get('/welcome', function () {
 
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
+
