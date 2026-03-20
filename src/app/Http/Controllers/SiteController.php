@@ -16,4 +16,8 @@ class SiteController extends Controller
             'habits' => $habits
         ]);
     }
-}
+
+    public function dashboard(){
+        return view('dashboard');
+    }
+};
