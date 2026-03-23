@@ -15,7 +15,7 @@
 
     @guest
         <div>
-            <a href="{{route('site.login')}}" class="text-gray-700 hover:text-blue-500">Login</a>
+            <a href="{{route('site.getLogin')}}" class="text-gray-700 hover:text-blue-500">Login</a>
         </div>
     @endguest
 </header>   

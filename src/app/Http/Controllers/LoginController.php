@@ -19,7 +19,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $loginRequest->session()->regenerate();
             return redirect()->intended(route('site.dashboard'));
-        }
+        }   
 
         return back()->withErrors([
             'email' => 'Le credenziali fornite non sono corrette.',
@@ -33,6 +33,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect(route('site.login'));
+        return redirect(route('site.getLogin'));
     }
 }

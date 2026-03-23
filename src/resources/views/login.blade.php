@@ -48,7 +48,10 @@
                 Login  
             </button>
         </form>
-
+        <p class="text-center mt-4">
+            Non hai un account? 
+            <a href="{{ route('site.register') }}" class="underline hover:opacity-50 transition">Registrati qui</a>.
+        </p>
         
     </section>
     </main>

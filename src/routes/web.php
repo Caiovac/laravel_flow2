@@ -10,7 +10,7 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
 
-Route::get('/login', [\App\Http\Controllers\LoginController::class, 'index'])->name('site.login'); //pagina di login
+Route::get('/login', [\App\Http\Controllers\LoginController::class, 'index'])->name('site.getLogin'); //pagina di login
 Route::post('/login',[\App\Http\Controllers\LoginController::class, 'authenticate'])->name('auth.authenticate'); //autenticazione
 
 Route::middleware('auth')->group(
@@ -22,3 +22,4 @@ Route::middleware('auth')->group(
 );
 
 Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'index'])->name('site.register'); //pagina di registrazione
+Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'store'])->name('auth.register');
