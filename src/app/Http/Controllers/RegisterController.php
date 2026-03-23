@@ -21,7 +21,7 @@ class RegisterController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password'),
 
-        ]);
+        ]); 
         
         Auth::login($user);    
     

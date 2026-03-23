@@ -14,7 +14,8 @@ services:
         condition: service_started
     networks:
       - laravel
-
+    user: "${UID}:${GID}"
+    
   nginx:
     image: nginx:alpine
     container_name: laravel_nginx
