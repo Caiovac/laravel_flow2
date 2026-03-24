@@ -44,4 +44,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    //Utente puo avere molti abitudini
+    
+    protected function habits() : HasMany
+    {
+        return $this->hasMany(Habit::class);
+    }
 }
