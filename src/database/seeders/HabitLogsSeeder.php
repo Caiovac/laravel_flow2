@@ -4,15 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\HabitLog;
+use App\Models\HabitLogs;
 
-class HabitLogSeeder extends Seeder
+class HabitLogsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        HabitLog::factory()->count(10)->create();
+        HabitLogs::factory()->count(10)->create();
     }
 }

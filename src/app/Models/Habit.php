@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\User;
+use App\Models\HabitLogs;
 
 class Habit extends Model
 {
@@ -23,8 +25,8 @@ class Habit extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function habitsLogs() : HasMany
+    public function habitLogs() : HasMany
     {
-        return $this->hasMany(HabitsLogs::class);
+        return $this->hasMany(HabitLogs::class);
     }
 }

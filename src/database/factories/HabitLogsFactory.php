@@ -4,11 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Habit;
+use App\Models\HabitLogs;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HabitLog>
  */
-class HabitLogFactory extends Factory
+class HabitLogsFactory extends Factory
 {
     /**
      * Define the model's default state.
