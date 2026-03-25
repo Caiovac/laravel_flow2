@@ -49,12 +49,12 @@ class User extends Authenticatable
     }
     //Utente puo avere molti abitudini
 
-    protected function habits() : HasMany
+    public function habits() : HasMany
     {
         return $this->hasMany(Habit::class);
     }
 
-    protected function habitLogs() : HasMany
+    public function habitLogs() : HasMany
     {
         return $this->hasMany(HabitLogs::class);
     }

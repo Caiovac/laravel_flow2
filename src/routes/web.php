@@ -19,6 +19,10 @@ Route::middleware('auth')->group(
     function() {
         Route::get('/dashboard',[SiteController::class, 'dashboard'])->name('site.dashboard');
         Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+
+        //Habits
+        Route::get('/dashboard/habits/create', [HabitController::class, 'create'])->name('habits.create');
+        Route::post('/dashboard/habits/store', [HabitController::class, 'store'])->name('habits.store');
     }
 );
 
