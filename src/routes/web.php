@@ -17,12 +17,19 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.auth
 Route::middleware('auth')->group(
 
     function() {
-        Route::get('/dashboard',[SiteController::class, 'dashboard'])->name('site.dashboard');
         Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
-        //Habits
-        Route::get('/dashboard/habits/create', [HabitController::class, 'create'])->name('habits.create');
-        Route::post('/dashboard/habits/store', [HabitController::class, 'store'])->name('habits.store');
+        //La manipolazione delle abittudini occorre dal fatto che un utente sia logato e abbia visionato la sua dashboard
+        //Dalla /dashboard vediamo le rotta complementari come /habits/create oppure
+        // Route::get('/dashboard',[SiteController::class, 'dashboard'])->name('site.dashboard');
+        // Route::get('/dashboard/habits/create', [HabitController::class, 'create'])->name('habits.create');
+        // Route::post('/dashboard/habits', [HabitController::class, 'store'])->name('habit.store');
+        // Route::delete('/dashboard/habits/{habit}', [HabitController::class, 'destroy'])->name('habit.destroy');
+        // Route::get('/dashboard/habits/{habit}/edit', [HabitController::class, 'edit'])->name('habit.edit');
+        // Route::put('/dashobard/habits/{habit}', [HabitController::class, 'update'])->name('habit.update');
+        Route::resource('/dashboard/habits', HabitController::class);
+
+
     }
 );
 

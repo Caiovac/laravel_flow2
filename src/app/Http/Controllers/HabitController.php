@@ -15,9 +15,10 @@ class HabitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : View
     {
-        //
+        $habits = auth()->user()->habits;
+        return view('dashboard', compact('habits'));
     }
 
     /**
@@ -37,7 +38,7 @@ class HabitController extends Controller
 
         auth()->user()->habits()->create($validated);
         
-        return redirect()->route('site.dashboard')->with('success', 'Abitudine creata con sucesso');
+        return redirect()->route('habits.index')->with('success', 'Abitudine creata con sucesso');
     }
 
     /**
@@ -53,15 +54,23 @@ class HabitController extends Controller
      */
     public function edit(Habit $habit)
     {
-        //
+        return view('habit/edit', compact('habit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Habit $habit)
+    public function update(HabitRequest $request, Habit $habit)
     {
-        //
+        if($habit->user_id !== auth()->user()->id){
+            abort(403, 'Quest\'abitudine non è tua!');
+        }
+        $habit->update($request->all());
+        
+
+        return redirect()
+        ->route('habits.index')
+        ->with('success', 'La tua abitudine è stata aggiornata con successo! ');
     }
 
     /**
@@ -69,6 +78,15 @@ class HabitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        //
+        
+        if($habit->user_id !== auth()->user()->id){
+            abort(403, 'Quest\'abitudine non è tua!');
+        }
+        
+        $habit->delete();
+
+        return redirect()
+        ->route('habits.index')
+        ->with('success', 'hai rimosso l\'abitudine!');
     }
 }
