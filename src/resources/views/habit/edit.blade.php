@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10">
+    <main class="py-10 min-h-[calc(100vh-160px)]">
         <h1 class="text-4xl font-bold text-center">Editare abitudine</h1>
         <section class="bg-white  max-w-[600px] mx-auto p-10 border-2 mt-4">
             <form action="{{ route('habits.update', $habit->id ) }}" method="POST" class="max-w-md mx-auto">

@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10">
+    <main class="py-10 min-h-[calc(100vh-160px)]">
     
     <section class="bg-white habit-shadow max-w-[600px] mx-auto p-10 border-2 mt-4">
 
@@ -50,7 +50,7 @@
         </form>
         <p class="text-center mt-4">
             Non hai un account? 
-            <a href="{{ route('site.register') }}" class="underline hover:opacity-50 transition">Registrati qui</a>.
+            <a href="{{ route('site.register') }}" class="underline hover:text-habit-orange transition">Registrati qui</a>.
         </p>
         
     </section>
