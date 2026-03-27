@@ -1,21 +1,22 @@
 <header class="bg-white border-b-2 flex items-center justify-between p-4">
-    <div>
-        LOGO
-    </div>
+    <a href="{{ route('index') }}" class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-orange">
+        HT
+    </a>
     <div>
         GITHUB
     </div>
 
     @auth
-        <form action="{{route('auth.logout')}}" method="POST">
+        <form class="inline" action="{{route('auth.logout')}}" method="POST">
             @csrf
-            <button type="submit" class="text-gray-700 hover:text-blue-500">Logout</button>
+            <button type="submit" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Logout</button>
         </form>
     @endauth
 
-    @guest
-        <div>
-            <a href="{{route('site.getLogin')}}" class="text-gray-700 hover:text-blue-500">Login</a>
+    @guest 
+        <div class="flex gap-4">
+            <a href="{{route('site.login')}}" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Login</a>
+            <a href="{{route('site.register')}}" class="habit-btn habit-shadow-lg p-2">Registra</a>
         </div>
     @endguest
 </header>   

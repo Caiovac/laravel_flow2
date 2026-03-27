@@ -9,9 +9,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
 
-Route::get('/', [SiteController::class, 'index']);
+Route::get('/', [SiteController::class, 'index'])->name('index');
 
-Route::get('/login', [LoginController::class, 'index'])->name('site.getLogin'); //pagina di login
+Route::get('/login', [LoginController::class, 'index'])->name('site.login'); //pagina di login
 Route::post('/login', [LoginController::class, 'authenticate'])->name('auth.authenticate'); //autenticazione
 
 Route::middleware('auth')->group(
