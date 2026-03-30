@@ -16,14 +16,35 @@
 
                 @forelse ($habits as $item)
 
+                @php
+
+                    $wasCompletedToday = $item->habitLogs
+                    ->where('user_id', auth()->id())
+                    ->where ('completed_at', \Carbon\Carbon::today()->toDateString())
+                    ->isNotEmpty();
+
+                @endphp
+
                 <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
-                    <div class="flex grap-2 items-center">
-                        <input type="checkbox" class="w-6 h-6" {{$item->is_completed ? 'checked' : ''}} disabled />
+                    <form
+                        method="POST"
+                        action="{{ route('habits.toggle', $item->id) }}"
+                        class="flex grap-2 items-center"
+                        id="form-{{$item->id}}"
+                     >
+                        @csrf
+                        
+                        <input 
+                        type="checkbox" 
+                        class="w-6 h-6" {{$item->is_completed ? 'checked' : ''}} 
+                        {{  $wasCompletedToday ? 'checked' : ''}}
+                        onchange ="document.getElementById('form-{{$item->id}}').submit()"
+                        />
                         <p class="font-bold text-lg">
                             {{ $item->name }}
                         </p>
                         
-                    </div>
+                    </form>
                 </li>
 
                 @empty
@@ -42,13 +63,13 @@
 </x-layout>
 
 <a href="{{ route('habits.edit', $item->id) }}" class="bg-white text-white p-1 ml-2 hover:opacity-50">
-                                <x-icons.pencil />
-                        </a>
-                        <form action="{{route('habits.destroy', $item)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
+    <x-icons.pencil />
+</a>
+<form action="{{route('habits.destroy', $item)}}" method="POST">
+    @csrf
+    @method('DELETE')
 
-                            <button type="submit" class="bg-red-500 text-white p-1 ml-2 hover:opacity-50">
-                                <x-icons.trash />
-                            </button>
-                        </form>
+    <button type="submit" class="bg-red-500 text-white p-1 ml-2 hover:opacity-50">
+        <x-icons.trash />
+    </button>
+</form>

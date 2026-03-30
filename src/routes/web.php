@@ -30,5 +30,5 @@ Route::middleware('auth')->group(function() {
         // Route::put('/dashobard/habits/{habit}', [HabitController::class, 'update'])->name('habit.update');
         Route::resource('/dashboard/habits', HabitController::class)->except(['show']);; //show escluso consente il config senza conflitti
         Route::get('/dashboard/habits/config',[HabitController::class, 'settings'])->name('habits.settings');
-
+        Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
     });
