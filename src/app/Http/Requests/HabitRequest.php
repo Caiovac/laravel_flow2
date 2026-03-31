@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class HabitRequest extends FormRequest
 {

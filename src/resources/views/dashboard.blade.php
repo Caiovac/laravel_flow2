@@ -16,15 +16,6 @@
 
                 @forelse ($habits as $item)
 
-                @php
-
-                    $wasCompletedToday = $item->habitLogs
-                    ->where('user_id', auth()->id())
-                    ->where ('completed_at', \Carbon\Carbon::today()->toDateString())
-                    ->isNotEmpty();
-
-                @endphp
-
                 <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
                     <form
                         method="POST"
@@ -37,7 +28,7 @@
                         <input 
                         type="checkbox" 
                         class="w-6 h-6" {{$item->is_completed ? 'checked' : ''}} 
-                        {{  $wasCompletedToday ? 'checked' : ''}}
+                        {{  $item->wasCompletedToday() ? 'checked' : ''}}
                         onchange ="document.getElementById('form-{{$item->id}}').submit()"
                         />
                         <p class="font-bold text-lg">
@@ -61,15 +52,3 @@
         </div>
     </main>
 </x-layout>
-
-<a href="{{ route('habits.edit', $item->id) }}" class="bg-white text-white p-1 ml-2 hover:opacity-50">
-    <x-icons.pencil />
-</a>
-<form action="{{route('habits.destroy', $item)}}" method="POST">
-    @csrf
-    @method('DELETE')
-
-    <button type="submit" class="bg-red-500 text-white p-1 ml-2 hover:opacity-50">
-        <x-icons.trash />
-    </button>
-</form>
