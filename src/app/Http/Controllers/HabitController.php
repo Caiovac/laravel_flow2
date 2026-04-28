@@ -11,10 +11,14 @@ use App\Http\Requests\HabitRequest;
 use App\Models\HabitLogs;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 
 class HabitController extends Controller
 {
+
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -52,6 +56,8 @@ class HabitController extends Controller
      */
     public function edit(Habit $habit)
     {
+        $this->authorize('update', $habit);
+        
         return view('habit/edit', compact('habit'));
     }
 
@@ -60,9 +66,8 @@ class HabitController extends Controller
      */
     public function update(HabitRequest $request, Habit $habit)
     {
-        if($habit->user_id !== Auth::user()->id){
-            abort(403, 'Quest\'abitudine non è tua!');
-        }
+        $this->authorize('update', $habit);
+
         $habit->update($request->all());
         
 
@@ -77,9 +82,7 @@ class HabitController extends Controller
     public function destroy(Habit $habit)
     {
         
-        if($habit->user_id !== Auth::user()->id){
-            abort(403, 'Quest\'abitudine non è tua!');
-        }
+        $this->authorize('delete', $habit);
         
         $habit->delete();
 
