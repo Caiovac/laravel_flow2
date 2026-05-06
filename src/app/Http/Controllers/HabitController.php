@@ -154,6 +154,7 @@ class HabitController extends Controller
         }])
         ->get(); 
 
+
         return view('habit/history', compact('habits', 'selectedYear'));
     }
 }
