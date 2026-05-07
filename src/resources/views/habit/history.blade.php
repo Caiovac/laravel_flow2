@@ -2,6 +2,16 @@
     <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
         <x-navbar />
 
+
+        <div class="my-4">
+            @foreach($availableYears as $y)
+                <a href="{{ route('habits.history', $y) }}" class="habit-shadow-lg habit-btn p-2 inline-block
+                {{ $selectedYear === $y ? 'bg-habit-orange' : 'bg-white' }}
+                ">
+                    {{ $y }}
+                </a>
+            @endforeach
+        </div>
         {{-- storico dei contributi --}}
         <div>
                 @forelse($habits as $habit)

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function() {
         // Route::get('/dashboard/habits/{habit}/edit', [HabitController::class, 'edit'])->name('habit.edit');
         // Route::put('/dashobard/habits/{habit}', [HabitController::class, 'update'])->name('habit.update');
         Route::resource('/dashboard/habits', HabitController::class)->except(['show']);; //show escluso consente il config senza conflitti
-        Route::get('/dashborad/habits/history', [HabitController::class, 'history'])->name('habits.history');
+        Route::get('/dashborad/habits/history/{year?}', [HabitController::class, 'history'])->name('habits.history');
         Route::get('/dashboard/habits/config',[HabitController::class, 'settings'])->name('habits.settings');
         Route::post('/dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
     });

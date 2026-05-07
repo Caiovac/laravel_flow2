@@ -38,29 +38,42 @@ class Habit extends Model
      * @return array Una matrice di settimane, dove ogni settimana è un array di 7 elementi (date o null)
      */
 
-    public static function gererateYearGrid(int $year) : array
-    {
-        $startDate = \Carbon\Carbon::create($year, 1, 1);
-        $endDate = \Carbon\Carbon::create($year, 12, 31);
+    public static function generateYearGrid(int $year): array
+{
+    $startDate = Carbon::create($year, 1, 1)->startOfDay();
+    $endDate = Carbon::create($year, 12, 31)->startOfDay();
 
-        $weeks = [];
-        $currentWeek = [];
+    $weeks = [];
+    $currentWeek = [];
 
-        $firstDayOfWeek = $startDate->dayOfWeek;
+    $firstDayOfWeek = $startDate->dayOfWeek; // 0 = domenica, 6 = sabato
 
-        for ($i = 0; $i < $firstDayOfWeek; $i++) {
-            $currentWeek[] = null;
+    // Aggiunge celle vuote prima del primo giorno dell'anno
+    for ($i = 0; $i < $firstDayOfWeek; $i++) {
+        $currentWeek[] = null;
+    }
 
-        for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
-            $currentWeek[] = $date->copy();
-            if ($date->isSaturday() || $date->eq($endDate)) {
-                $weeks[] = $currentWeek;
-                $currentWeek = [];
-            }
-        }
-        return $weeks;
+    // Aggiunge tutti i giorni dell'anno
+    for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+        $currentWeek[] = $date->copy();
+
+        if ($date->isSaturday()) {
+            $weeks[] = $currentWeek;
+            $currentWeek = [];
         }
     }
+
+    // Se l'ultima settimana non è completa, aggiunge celle vuote finali
+    if (!empty($currentWeek)) {
+        while (count($currentWeek) < 7) {
+            $currentWeek[] = null;
+        }
+
+        $weeks[] = $currentWeek;
+    }
+
+    return $weeks;
+}
 
     public function wasCompletedToday() : bool
     {

@@ -2,7 +2,7 @@
 
 @php
     $selectedYear = $year ?? now()->year;
-    $weeks = \App\Models\Habit::gererateYearGrid($selectedYear);
+    $weeks = \App\Models\Habit::generateYearGrid($selectedYear);
 @endphp
 
 <div class="mb-6">
@@ -11,9 +11,7 @@
     <h2 class="font-bold text-lg">
       {{ $habit->name }}
     </h2>
-    <span class="text-sm text-gray-600 font-semibold">
-      {{ $selectedYear }}
-    </span>
+    
   </div>
 
   {{-- GRID --}}

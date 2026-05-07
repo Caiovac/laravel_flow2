@@ -1,14 +1,6 @@
 <x-layout>
     <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
         <x-navbar />
-        @session('success')
-            <div class="flex">
-            <p class="bg-green-100 border-2 border-green-500 text-green-700 p-3 mb-4 max-w-[200px] block">
-                {{session('success')}}
-            </p>
-            </div>
-        @endsession
-
         <div>
 
             

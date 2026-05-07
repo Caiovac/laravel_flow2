@@ -88,7 +88,7 @@ class HabitController extends Controller
 
         return redirect()
         ->route('habits.index')
-        ->with('success', 'hai rimosso l\'abitudine!');
+        ->with('warning', 'hai rimosso l\'abitudine!');
     }
 
 
@@ -119,30 +119,39 @@ class HabitController extends Controller
         if($log){
             //Se esiste, rimuovere il registro
             $log->delete();
+            $alert = 'warning';
             $message = 'Abitudine non conclusa!';
         }
         else{
             //Se non esiste, crea il registro
-            HabitLogs::create(
+            HabitLogs::query()
+            ->create(
                 [
                 'user_id' => Auth::user()->id,
                 'habit_id' => $habit->id,
                 'completed_at' => $today,
                 ]
             );
+            $alert = 'success';
             $message = 'Abitudine conclusa!';
         }
         //Ritornare alla pagina precendente
         return redirect()
         ->route('habits.index')
-        ->with('success', $message);
+        ->with($alert, $message);
 
     }
 
-    public function history()
+    public function history(?int $year = null) : View
     {
 
-        $selectedYear = Carbon::now()->year;
+        $selectedYear = $year ?? Carbon::now()->year;
+
+        $availableYears = range(Carbon::now()->year - 6, Carbon::now()->year); 
+
+        if (!in_array($selectedYear, $availableYears)) {
+            abort(404, 'Anno non disponibile');
+        }
 
         $startDate = Carbon::create($selectedYear, 1, 1)->startOfDay();
         $endDate = Carbon::create($selectedYear, 12, 31)->endOfDay();
@@ -155,6 +164,6 @@ class HabitController extends Controller
         ->get(); 
 
 
-        return view('habit/history', compact('habits', 'selectedYear'));
+        return view('habit.history', compact('habits', 'selectedYear', 'availableYears'));
     }
 }
