@@ -1,6 +1,6 @@
 <header class="bg-white border-b-2">
-
     <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+
 
         <div class="flex items-center gap-2">
             <a href="{{ route('index') }}" class="habit-btn habit-shadow-lg px-2 py-1 bg-habit-orange">
@@ -11,20 +11,25 @@
             </p>
         </div>
 
-        @auth
-            <form class="inline" action="{{route('auth.logout')}}" method="POST">
-                @csrf
-                <button type="submit" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Logout</button>
-            </form>
-        @endauth
+        <div class="flex gap-2 items-center">
+            @auth
+                <form class="inline" action="{{route('auth.logout')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Logout</button>
+                </form>
+            @endauth
 
-        @guest 
-            <div class="flex gap-4">
-                <a href="{{route('site.login')}}" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Login</a>
-                <a href="{{route('site.register')}}" class="habit-btn habit-shadow-lg p-2">Registra</a>
-            </div>
-        @endguest
+            @guest 
+                <div class="flex gap-4">
+                    <a href="{{route('site.login')}}" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Login</a>
+                    <a href="{{route('site.register')}}" class="habit-btn habit-shadow-lg p-2">Registra</a>
+                </div>
+            @endguest
 
+            <a class="habit-btn habit-shadow-lg bg-habit-orange p-2" href="https://github.com" target="_blank">
+                <x-icons.github class="w-6 h-6" />
+            </a>
+        </div>
     </div>
 
 </header>   

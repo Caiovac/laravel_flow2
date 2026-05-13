@@ -1,12 +1,11 @@
 <x-layout>
-    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-5xl mx-auto py-10 px-4 min-h-[80vh] w-full">
         <x-navbar />
-        <div>
-
-            
-            <h2 class="text-lg mt-8 mb-2">{{ date('d/m/Y') }}</h2>
-
-            <ul class="flex flex-col gap-2">
+        <div class="flex flex-col items-start gap-4">
+            <h2 class="text-lg mt-8 font-bold">
+                {{ \Carbon\Carbon::now('Europe/Rome')->locale('it')->translatedFormat('l, d F') }}
+            </h2>
+            <ul class="flex flex-col gap-2 w-full">
 
                 @forelse ($habits as $item)
 
@@ -43,6 +42,8 @@
                     
                 @endforelse
             </ul>
+
+            <a href="{{route('habits.create')}}" class="habit-btn habit-shadow-lg bg-habit-orange p-2">Aggiungi abitudine</a>
         </div>
     </main>
 </x-layout>
