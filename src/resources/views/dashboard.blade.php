@@ -2,9 +2,10 @@
     <main class="max-w-5xl mx-auto py-10 px-4 min-h-[80vh] w-full">
         <x-navbar />
         <div class="flex flex-col items-start gap-4">
-            <h2 class="text-lg mt-8 font-bold">
-                {{ \Carbon\Carbon::now('Europe/Rome')->locale('it')->translatedFormat('l, d F') }}
-            </h2>
+            <x-title>
+             {{ \Carbon\Carbon::now('Europe/Rome')->locale('it')->translatedFormat('l, d F') }}
+            </x-title> 
+            
             <ul class="flex flex-col gap-2 w-full">
 
                 @forelse ($habits as $item)

@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10 min-h-[calc(100vh-160px)] px-4">
+    <main class="max-w-5xl mx-auto py-10 min-h-[calc(100vh-160px)] px-4 w-full">
         <x-navbar />
 
         @session('success')
@@ -11,29 +11,30 @@
         @endsession
 
         <div>
-            <h2 class="text-lg mt-8 mb-2">Configurare abitudini</h2>
-
+            <x-title>
+                Configurare abitudini
+            </x-title>
             <ul class="flex flex-col gap-2">
 
                 @forelse ($habits as $item)
 
-                <li class="habit-shadow-lg p-2 bg-[#FFDAAC]">
-                    <div class="flex grap-2 items-center">
+                <li class="flex grap-2 items-center justify-between w-full">
+                    <div class="habit-shadow-lg p-2 bg-[#FFDAAC] w-full">
                         <p class="font-bold text-lg">
                             {{ $item->name }}
                         </p>
-                        <a href="{{ route('habits.edit', $item->id) }}" class="bg-white text-white p-1 ml-2 hover:opacity-50">
-                                <x-icons.pencil />
-                        </a>
-                        <form action="{{route('habits.destroy', $item)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="bg-red-500 text-white p-1 ml-2 hover:opacity-50">
-                                <x-icons.trash />
-                            </button>
-                        </form> 
                     </div>
+                    <a href="{{ route('habits.edit', $item) }}" class="bg-white habit-shadow-lg p-2 ml-2 hover:opacity-50">
+                            <x-icons.pencil />
+                    </a>
+                    <form action="{{route('habits.destroy', $item)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="habit-shadow-lg bg-red-500 text-white p-2 ml-2 hover:opacity-50">
+                            <x-icons.trash />
+                        </button>
+                    </form> 
                 </li>
 
                 @empty

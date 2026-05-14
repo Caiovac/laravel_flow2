@@ -11,7 +11,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="font-blod text-md border-r-2 border-habit-orange pr-2 hover:underline">
+            <a href="#" class="font-blod text-gray-600 text-md border-r-2 border-habit-orange pr-2 hover:cursor-not-allowed">
                 Calendario
             </a>
         </li>

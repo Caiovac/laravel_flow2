@@ -1,7 +1,7 @@
 <x-layout>
-    <main class="py-10 min-h-[calc(100vh-160px)]">
-        <h1 class="text-4xl font-bold text-center">Registra una nuova abitudine</h1>
-        <section class="bg-white  max-w-[600px] mx-auto p-10 border-2 mt-4">
+    <main class="max-w-5xl mx-auto py-10 px-4 min-h-[80vh] w-full">
+        <h1 class="text-2xl font-bold text-center">Registra una nuova abitudine</h1>
+        <section class="habit-shadow-lg bg-white  max-w-[600px] mx-auto p-10 border-2 mt-4">
             <form action="{{ route('habits.store') }}" method="POST" class="max-w-md mx-auto">
                 @csrf
                 <div class="flex flex-col gap-2 mb-2">
